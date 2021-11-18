@@ -1,5 +1,3 @@
-.content {
-    min-height: 280px;
-    padding: 24px;
-    background: #fff;
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
+    background-color: "#E97D7D" !important;
   }

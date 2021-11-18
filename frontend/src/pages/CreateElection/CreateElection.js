@@ -1,36 +1,55 @@
 import React, { useState } from 'react';
+import { Steps, Row, Col } from 'antd';
 import { CreateElectionDistrictForm } from './Form/CreateElectionDistrictForm'
 import { CreateElectionCandidateForm } from './Form/CreateElectionCandidateForm'
+import { ReCheckInfo } from '../ElectionInfo/ReCheckInfo';
+import { CreateResult } from '../CreateResult/CreateResult';
 import './CreateElection.css'
-
-import { Steps } from 'antd';
-import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
 
 const { Step } = Steps;
 
-
-
 export function CreateElection(props) {
     const [electionInfo, setElectionInfo] = useState({})
-    const [candidateInfo, setCandidateInfo] = useState({})
+    const [candidateInfo, setCandidateInfo] = useState([])
+    const [newCandidateInfo, setNewCandidateInfo] = useState([])
+    const [state, setState] = useState(0)
 
-    const status = {
-        electionInfo: "finish",
-        candidateInfo: "finish",
-        checkInfo: "process",
-        finish: "wait",
+    const nextState = () => {
+        if (state < 3) setState(state + 1)
     }
 
+    const prevState = () => {
+        if (state > 0) setState(state - 1)
+    }
+    
+    const allProps = {
+        electionInfo: electionInfo,
+        setElectionInfo: setElectionInfo,
+        candidateInfo: candidateInfo,
+        setCandidateInfo: setCandidateInfo,
+        newCandidateInfo: newCandidateInfo,
+        setNewCandidateInfo: setNewCandidateInfo,
+        nextState: nextState,
+        prevState: prevState,
+
+    }
+    
     return (
-        <>
-            <Steps style={{ marginBottom: "16px"}}>
-                <Step status={status.electionInfo} title="กรอกข้อมูลการเลือกตั้ง" icon={<UserOutlined />} />
-                <Step status={status.candidateInfo} title="กรอกรายชื่อผู้สมัคร" icon={<SolutionOutlined />} />
-                <Step status={status.checkInfo} title="ตรวจสอบข้อมูล" icon={<LoadingOutlined />} />
-                <Step status={status.finish} title="สำเร็จ" icon={<SmileOutlined />} />
-            </Steps>
-            <CreateElectionDistrictForm setElectionInfo={setElectionInfo} />
-            <CreateElectionCandidateForm setCandidateInfo={setCandidateInfo} />
-        </>
+        <Row>
+            <Col span={6}>
+                <Steps direction="vertical" size="small" current={state} className="custome-step" >
+                    <Step title="กรอกข้อมูลการเลือกตั้ง" />
+                    <Step title="กรอกรายชื่อผู้สมัคร" />
+                    <Step title="ตรวจสอบข้อมูล" />
+                    <Step title="สำเร็จ" />
+                </Steps>
+            </Col>
+            <Col span={18}>
+                {state === 0 && <CreateElectionDistrictForm {...allProps} />}
+                {state === 1 && <CreateElectionCandidateForm {...allProps} />}
+                {state === 2 && <ReCheckInfo {...allProps}  />}
+                {state === 3 && <CreateResult {...allProps}  />}
+            </Col>
+      </Row>
     )
 }

@@ -24,12 +24,13 @@ const districtOptions = [
   },
 ]
 
-export const CreateElectionDistrictForm = (props) => {
+export const CreateElectionDistrictForm = ({setElectionInfo, nextState, electionInfo}) => {
   const [form] = Form.useForm();
+  form.setFieldsValue(electionInfo)
 
   const onFinish = (values) => {
-    console.log(values);
-    props.setElectionInfo(values)
+    setElectionInfo(values)
+    nextState()
   };
 
   const onReset = () => {
@@ -38,7 +39,7 @@ export const CreateElectionDistrictForm = (props) => {
 
   return (
     <Form
-      labelCol={{ span: 8 }}
+      labelCol={{ span: 3 }}
       wrapperCol={{ span: 9 }}
       layout="horizontal"
       form={form}
@@ -85,7 +86,7 @@ export const CreateElectionDistrictForm = (props) => {
         <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+      <Form.Item wrapperCol={{ offset: 3, span: 16 }}>
         <Button type="primary" htmlType="submit" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px"}}> 
           ตกลง
         </Button>
