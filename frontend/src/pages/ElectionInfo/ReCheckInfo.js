@@ -1,15 +1,14 @@
 import React from 'react';
-import { Steps, Row, Col, Typography, Space, Grid, Button, Layout } from 'antd';
+import { Row, Typography, Space, Button } from 'antd';
 import { Info } from './Info';
 
 const { Title } = Typography;
-const { Header, Footer, Sider, Content } = Layout;
 
-export function ReCheckInfo({candidateInfo, nextState, prevState, newCandidateInfo, setNewCandidateInfo}) {
+export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidateInfo}) {
 
     const tmp = () => {
         const infoWithAddr = candidateInfo.map(candidate => {
-            // send data and get address
+            
             var address = "0x00000000000000000000"
             return  {...candidate, address: address}
         });

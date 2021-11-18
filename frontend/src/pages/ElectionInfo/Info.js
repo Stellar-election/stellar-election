@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Steps, Row, Col, Typography, Space, Card } from 'antd';
+import React from 'react';
+import { Row, Col, Typography, Space, Card } from 'antd';
 
 export function Info(props) {
     const first_name = props.value['firstName'];

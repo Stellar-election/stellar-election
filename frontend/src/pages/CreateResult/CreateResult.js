@@ -1,9 +1,8 @@
 import React from 'react';
-import { Steps, Row, Col, Typography, Space, Grid, Button, Layout } from 'antd';
+import { Row, Typography, Space, Button } from 'antd';
 import { Info } from '../ElectionInfo/Info';
 
 const { Title } = Typography;
-const { Header, Footer, Sider, Content } = Layout;
 
 export function CreateResult(props) {
     const data = props.newCandidateInfo

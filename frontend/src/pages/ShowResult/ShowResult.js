@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps, Row, Col, Typography, Space, Grid, Button, Layout } from 'antd';
+import { Row, Typography, Space, Button } from 'antd';
 import { CandidateCard } from './CandidateCard';
 
 const { Title } = Typography;
