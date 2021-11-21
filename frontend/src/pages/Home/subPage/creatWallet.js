@@ -17,7 +17,7 @@ export const CreateWallet = () => {
         citizen.setCitizenId(values.citizenId)
         laserCardId.setLaserCardId(values.laserId)
         password.setPassword(values.password)
-        currentState.setCurrentState(4)
+        currentState.setCurrentState(3)
     };
 
     const onFinishFailed = (errorInfo) => {

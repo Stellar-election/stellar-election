@@ -3,6 +3,9 @@ import {useContext} from "react";
 import {VoteContext} from "../../store/voteStore";
 import {Checking} from "./subPage/cheking";
 import {CreateWallet} from "./subPage/creatWallet";
+import {Area} from "./subPage/Area";
+import {DoneVote} from "../DoneVote/DoneVote";
+import {Vote} from "../Vote/Vote";
 
 const {Step} = Steps;
 
@@ -13,8 +16,14 @@ const StepComponent = (state) => {
     switch (state.state) {
         case 0:
             return <Checking/>
+        case 1:
+            return <Area/>
         case 2:
             return <CreateWallet/>
+        case 3:
+            return <Vote/>
+        case 4:
+            return <DoneVote/>
         default:
             return <Checking/>
     }

@@ -8,11 +8,15 @@ export default ({children}) => {
     const [currentState, setCurrentState] = React.useState(0)
     const [laserCardId, setLaserCardId] = React.useState(null)
     const [password, setPassword] = React.useState(null)
+    const [area, setArea] = React.useState(null)
+    const [voteSelect, setVoteSelect] = React.useState(null)
     const store = {
         citizen: {citizenId, setCitizenId},
         currentState: {currentState, setCurrentState},
         laserCardId: {laserCardId, setLaserCardId},
-        password: {password, setPassword}
+        password: {password, setPassword},
+        area: {area, setArea},
+        vote: {voteSelect, setVoteSelect}
 
     }
 

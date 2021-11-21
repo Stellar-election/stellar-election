@@ -11,7 +11,7 @@ export const Checking = () => {
     const onFinish = (values) => {
         citizen.setCitizenId(values.citizenId)
 
-        currentState.setCurrentState(2)
+        currentState.setCurrentState(1)
     };
 
     const onFinishFailed = (errorInfo) => {
