@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/area" element={<Area/>} />
         <Route path="/vote" element={<Vote/>} />
         <Route path="/showresult" element={<ShowResult/>} />
-        <Route path="/donwvote" element={<DoneVote/>} />
+        <Route path="/donevote" element={<DoneVote/>} />
       </Routes>
 
     </PageContainer>

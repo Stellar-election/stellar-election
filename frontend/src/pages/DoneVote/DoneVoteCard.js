@@ -13,44 +13,25 @@ export function DoneVoteCard(props) {
 
         <Card style={{ width: 1200 }}>
 
-            <Row>
-                
-                
-            </Row>
+            
  
             <Row>
-            <Col span={4} >
-                {/* <svg xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="70" cy="70" r="50" fill="red" />
-                </svg> */}
-                <div class ="circle"></div>
-             
-            </Col>
+                
+                <Col span={17} >
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                    <Title level={60}>{first_name} {last_name}</Title>
+                    <Title level={60}>{puck}</Title>
+                </Col>
            
-            <Col span={5} >
+            <Col span={1} >
             <Avatar 
-                size={144} 
+                size={500} 
                 icon={<UserOutlined/>}
                 justify = "end"
                 
             />
             </Col>
-            
-            <Col span={9} flex>
-            <Space direction="vertical" size={6}>
-            <br/>
-            <Title level={3}>{first_name} {last_name}</Title>
-            
-            </Space>
-            </Col>
-            
-            <Col span={6} >
-            <Space direction="vertical" size={6}>
-            <br/>
-            <Title level={3}>{puck}</Title>
-            </Space>
-            </Col>
-            
+       
             </Row>
 
         </Card>

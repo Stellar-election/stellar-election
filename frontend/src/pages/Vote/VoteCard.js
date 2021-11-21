@@ -1,29 +1,28 @@
 import React from 'react';
-import { Row, Col, Typography, Space, Card, Avatar } from 'antd';
+import { Row, Col, Typography, Space, Card, Avatar,Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {circle} from './Vote.css'
 const { Title } = Typography;
+
 
 export function CandidateCard(props) {
     const first_name = props.value['value1']
     const last_name = props.value['value2']
     const puck = props.value['value3']
-    const score = props.value['value4']
+    const index = props.value['value5']
     return (
-
-        <Card style={{ width: 1200 }}>
-
+        <div  onclick="location.href='DoneVote.html';">
+        <Card style={{ width: 1200 }}  >
+            
+        
             <Row>
                 
-                
-            </Row>
- 
-            <Row>
             <Col span={4} >
-                {/* <svg xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="70" cy="70" r="50" fill="red" />
-                </svg> */}
-                <div class ="circle"></div>
+                <br></br>
+                {/* <Button class="button button5" type="primary" href="/donevote" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "10px",width: "150px"}}>
+                   {index}
+                </Button> */}
+                <a class="btn" href="/donevote"><i class="ion-ios-arrow-down"></i></a>
              
             </Col>
            
@@ -54,6 +53,7 @@ export function CandidateCard(props) {
             </Row>
 
         </Card>
+        </div>
       
     )
 }

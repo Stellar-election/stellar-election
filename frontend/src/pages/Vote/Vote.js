@@ -6,7 +6,7 @@ const { Title } = Typography;
 
 export function Vote(props) {
     const dat = props.newCandidateInfo;
-    const data = [{'value1':'Chayanan','value2':'na east anglia','value3':'Puckard','value4':'100'}, {'value1':'Owliyong','value2':'Mongbang','value3':'Puckawatto','value4':'9999999'}]
+    const data = [{'value1':'Chayanan','value2':'na east anglia','value3':'Puckard','value4':'100','value5':'1'}, {'value1':'Owliyong','value2':'Mongbang','value3':'Puckawatto','value4':'9999999','value5':'2'}]
     return (
         <div>
             <Row justify="center">
@@ -16,7 +16,7 @@ export function Vote(props) {
             <Row justify="center">
                 <Space direction="vertical" size = "middle">
                     {data.map((value,index) =>{
-                    return <CandidateCard key={index}  value={value}/>
+                    return <CandidateCard key={index}  value={value}  />
                     })}
                 </Space>
             </Row>

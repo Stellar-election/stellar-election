@@ -6,3 +6,23 @@ circle {
     border-radius: 25px;
     background: red;
   }
+  .button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+  }
+  .btn {
+    display:block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid red;
+    
+  }
+  .button5 {border-radius: 50%;}
