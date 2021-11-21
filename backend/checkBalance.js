@@ -20,3 +20,5 @@ checkAccounts(accounts).then(accounts => console.log(util.inspect(accounts,false
     console.log(e);
     throw e;
 });
+
+console.log(accounts[0])
