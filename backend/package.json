@@ -4,6 +4,8 @@
   "description": "",
   "main": "createWallet.js",
   "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "sodium-native": "^3.3.0",
     "stellar-sdk": "^9.1.0"
   },

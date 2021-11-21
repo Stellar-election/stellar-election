@@ -4,6 +4,7 @@ import { CreateElectionDistrictForm } from './Form/CreateElectionDistrictForm'
 import { CreateElectionCandidateForm } from './Form/CreateElectionCandidateForm'
 import { ReCheckInfo } from '../ElectionInfo/ReCheckInfo';
 import { CreateResult } from '../CreateResult/CreateResult';
+import axios from 'axios'
 import './CreateElection.css'
 
 const { Step } = Steps;
@@ -15,6 +16,15 @@ export function CreateElection(props) {
     const [state, setState] = useState(0)
 
     const nextState = () => {
+        if (state == 2) {
+            // create account for all candidates
+            const res = axios.get('/');
+            console.log(res)
+            const success = false
+            if (success) {
+                // go to state = 3
+            }
+        }
         if (state < 3) setState(state + 1)
     }
 
@@ -31,7 +41,6 @@ export function CreateElection(props) {
         setNewCandidateInfo: setNewCandidateInfo,
         nextState: nextState,
         prevState: prevState,
-
     }
     
     return (
