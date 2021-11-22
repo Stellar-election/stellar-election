@@ -21,7 +21,7 @@ const addCoin = (account,coin,issuer,issuer_secret) => {
             amount: "1",
             }),
         )
-        // setTimeout is required for a transaction
+        
         .setTimeout(100)
         .build();
         transaction.sign(issuer_secret);

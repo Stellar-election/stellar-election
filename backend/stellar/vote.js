@@ -21,7 +21,14 @@ const vote = (account,secret,coin,destination) => {
             amount: "1",
             }),
         )
-        // setTimeout is required for a transaction
+        .addOperation(
+            StellarSdk.Operation.changeTrust({
+            asset: coin,
+            limit: "0",
+            
+            }),
+        )
+        
         .setTimeout(100)
         .build();
         transaction.sign(secret);
