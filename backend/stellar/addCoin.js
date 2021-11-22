@@ -6,16 +6,7 @@ const Router = express.Router();
 
 // Input : {coinName , issuer_account , issuer_secret ,account, secret }
 
-
-Router.post('/', function (req, res, next) {
-
-    const coinName = req.body.coinName
-    const account = req.body.account
-    const issuer = req.body.issuer_account
-    const issuer_secret = req.body.issuer_secret 
-
-    var coin = new StellarSdk.Asset(coinName, issuer);
-
+const addCoin = (account,coin,issuer,issuer_secret) => {
     server
     .loadAccount(issuer)
     .then(function (issuer) {
@@ -34,12 +25,25 @@ Router.post('/', function (req, res, next) {
         .setTimeout(100)
         .build();
         transaction.sign(issuer_secret);
-        server.submitTransaction(transaction);
+        return server.submitTransaction(transaction);
     })
     .then(console.log)
     .catch(function (error) {
         console.error("Error!", error);
     });
+}
+
+
+Router.post('/', function (req, res, next) {
+
+    const coinName = req.body.coinName
+    const account = req.body.account
+    const issuer = req.body.issuer
+    const issuer_secret = req.body.issuer_secret
+    const keyPair = StellarSdk.Keypair.fromSecret(issuer_secret)
+    const coin = new StellarSdk.Asset(coinName, issuer);
+
+    addCoin(account,coin,issuer,keyPair)
 
     return res.json(
         {

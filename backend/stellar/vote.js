@@ -6,21 +6,11 @@ const Router = express.Router();
 
 // Input : {coinName , destination , account , secret , issuer}
 
-
-Router.post('/', function (req, res, next) {
-
-    const coinName = req.body.coinName
-    const account = req.body.account
-    const secret = req.body.secret
-    const destination = req.body.destination
-    const issuer = req.body.issuer
-
-    const coin = StellarSdk.Asset(coinName, issuer);
-
+const vote = (account,secret,coin,destination) => {
     server
     .loadAccount(account)
-    .then(function (sender) {
-        var transaction = new StellarSdk.TransactionBuilder(sender, {
+    .then(function (voter) {
+        var transaction = new StellarSdk.TransactionBuilder(voter, {
         fee: 100,
         networkPassphrase: StellarSdk.Networks.TESTNET,
         })
@@ -34,19 +24,31 @@ Router.post('/', function (req, res, next) {
         // setTimeout is required for a transaction
         .setTimeout(100)
         .build();
-        transaction.sign(issuer_secret);
-        server.submitTransaction(transaction);
+        transaction.sign(secret);
+        return server.submitTransaction(transaction);
     })
     .then(console.log)
     .catch(function (error) {
         console.error("Error!", error);
     });
+}
+
+Router.post('/', function (req, res, next) {
+
+    const coinName = req.body.coinName
+    const account = req.body.account
+    const secret = req.body.secret
+    const destination = req.body.destination
+    const issuer = req.body.issuer
+    const keyPair = StellarSdk.Keypair.fromSecret(secret)
+
+    const coin = new StellarSdk.Asset(coinName, issuer);
+
+    vote(account,keyPair,coin,destination)
 
     return res.json(
         {
             "status": 200,
-            "data" : log
-            
         }
     )
 

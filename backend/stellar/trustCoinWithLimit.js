@@ -17,6 +17,7 @@ const trustCoin = (account,coin,secret) =>{
         .addOperation(
             StellarSdk.Operation.changeTrust({
             asset: coin,
+            limit: "1",
             
             }),
         )

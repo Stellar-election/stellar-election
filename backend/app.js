@@ -7,6 +7,7 @@ const checkBalance = require('./stellar/checkBalance');
 const trustCoin = require('./stellar/trustCoin');
 const vote = require('./stellar/vote');
 const path = require('path')
+const trustCoinWithLimit = require('./stellar/trustCoinWithLimit')
 // const indexRouter  = require('./routes/index');
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/createWallet',createWallet);
 app.use('/checkBalance',checkBalance);
 app.use('/trustCoin',trustCoin);
 app.use('/vote',vote);
+app.use('/trustCoinWithLimit',trustCoinWithLimit)
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
