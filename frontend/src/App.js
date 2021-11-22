@@ -1,20 +1,25 @@
 import PageContainer from './components/PageContainer';
-import { Routes, Route } from "react-router-dom";
-import { CreateElection } from './pages/CreateElection/CreateElection';
-import { ReCheckInfo } from './pages/ElectionInfo/ReCheckInfo';
-import { Home } from './pages/Home/Home';
-import { CreateResult } from './pages/CreateResult/CreateResult';
-import { ShowResult } from './pages/ShowResult/ShowResult';
+import {Route, Routes} from "react-router-dom";
+import {CreateElection} from './pages/CreateElection/CreateElection';
+import {Home} from './pages/Home/Home';
+import {ShowResult} from './pages/ShowResult/ShowResult';
+
 import './App.css';
+import VoteProvider from "./store/voteStore";
 
 export default function App() {
-  return (
-    <PageContainer>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<CreateElection />} />
-        <Route path="/result" element={<ShowResult/>} />
-      </Routes>
-    </PageContainer>
-  );
+
+    return (
+        <PageContainer>
+            <VoteProvider>
+                <Routes>
+
+                    <Route exact path="/" element={<Home/>}/>
+                    <Route path="/showresult" element={<ShowResult/>}/>
+                    <Route path="/create" element={<CreateElection/>}/>
+                    <Route path="/result" element={<ShowResult/>}/>
+                </Routes>
+            </VoteProvider>
+        </PageContainer>
+    );
 }

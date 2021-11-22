@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Typography, Space, Button } from 'antd';
 import { CandidateCard } from './CandidateCard';
 
+
 const { Title } = Typography;
 
 export function ShowResult(props) {
