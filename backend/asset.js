@@ -11,7 +11,7 @@ var receivingKeys = StellarSdk.Keypair.fromSecret(
 );
 
 // Create an object to represent the new asset
-var testCeliz = new StellarSdk.Asset("TestCeliz", issuingKeys.publicKey());
+var testCoin = new StellarSdk.Asset("name", issuingKeys.publicKey());
 
 // First, the receiving account must trust the asset
 server
@@ -25,7 +25,7 @@ server
       // The `limit` parameter below is optional
       .addOperation(
         StellarSdk.Operation.changeTrust({
-          asset: testCeliz,
+          asset: testCoin,
           
         }),
       )
@@ -49,7 +49,7 @@ server
       .addOperation(
         StellarSdk.Operation.payment({
           destination: receivingKeys.publicKey(),
-          asset: testCeliz,
+          asset: testCoin,
           amount: "1",
         }),
       )
