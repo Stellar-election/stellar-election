@@ -23,7 +23,7 @@ export function ShowResult(props) {
             </Row>
             <br/><br/>
             <Row justify="center" align="bottom">
-                <Button type="primary" href="/create" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px",width: "100px"}}>
+                <Button type="primary" href="/dashboard" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px",width: "100px"}}>
                     ตกลง
                 </Button>
             </Row>

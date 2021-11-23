@@ -15,15 +15,14 @@ export function CreateElection(props) {
     const [newCandidateInfo, setNewCandidateInfo] = useState([])
     const [state, setState] = useState(0)
 
+
     const nextState = () => {
         if (state == 2) {
-            // create account for all candidates
-            const res = axios.get('/');
-            console.log(res)
-            const success = false
-            if (success) {
-                // go to state = 3
-            }
+            setTimeout(() => {
+                if (newCandidateInfo != []) {
+                    setState(3)
+                }
+            }, 1000)
         }
         if (state < 3) setState(state + 1)
     }

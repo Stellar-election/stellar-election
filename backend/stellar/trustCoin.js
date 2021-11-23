@@ -6,7 +6,7 @@ const Router = express.Router();
 
 // Input : {coinName , account , secret , issuer_account}
 
-const trustCoin = (account,coin,secret) =>{
+const trustCoin = (account, coin, secret) =>{
     server
     .loadAccount(account)
     .then(function (receiver) {
@@ -17,7 +17,7 @@ const trustCoin = (account,coin,secret) =>{
         .addOperation(
             StellarSdk.Operation.changeTrust({
             asset: coin,
-            
+           
             }),
         )
         .setTimeout(100)

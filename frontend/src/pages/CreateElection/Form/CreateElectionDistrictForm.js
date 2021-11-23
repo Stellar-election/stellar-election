@@ -5,19 +5,19 @@ const { RangePicker } = DatePicker;
 
 const districtOptions = [
   {
-    value: 'กรุงเทพ',
+    value: 'bangkok',
     label: 'กรุงเทพ',
     children: [
       {
-        value: 'สะพานสูง',
+        value: ['Saphansung',0],
         label: 'สะพานสูง',
       },
       {
-        value: 'บางกะปิ',
+        value: ['Bangkapi',1],
         label: 'บางกะปิ',
       },
       {
-        value: 'พญาไท',
+        value: ['Payathai',2],
         label: 'พญาไท',
       },
     ],
@@ -71,7 +71,7 @@ export const CreateElectionDistrictForm = ({setElectionInfo, nextState, election
       >
         <Cascader options={districtOptions} />
       </Form.Item>
-
+{/* 
       <Form.Item
         label="ช่วงเวลาการเลือกตั้ง"
         name="date"
@@ -84,7 +84,7 @@ export const CreateElectionDistrictForm = ({setElectionInfo, nextState, election
         ]}
       >
         <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item wrapperCol={{ offset: 3, span: 16 }}>
         <Button type="primary" htmlType="submit" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px"}}> 

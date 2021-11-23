@@ -6,8 +6,8 @@ const {RangePicker} = DatePicker;
 
 const districtOptions = [
     {
-        value: 'พรรคการเมือง',
-        label: 'พรรคการเมือง',
+        value: 'พรรคการเมือง1',
+        label: 'พรรคการเมือง1',
     },
     {
         value: 'พรรคการเมือง2',

@@ -6,6 +6,7 @@ const { Title } = Typography;
 
 export function CreateResult(props) {
     const data = props.newCandidateInfo
+    console.log(`newCandidateInfo ---> ${JSON.stringify(data)}`)
     return (
         <div>
             <Row justify="center">

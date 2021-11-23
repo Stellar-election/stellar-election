@@ -1,18 +1,35 @@
 import React from 'react';
 import { Row, Typography, Space, Button } from 'antd';
 import { Info } from './Info';
+import axios from 'axios';
 
 const { Title } = Typography;
 
-export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidateInfo}) {
+export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidateInfo, electionInfo, newCandidateInfo}) {
 
-    const tmp = () => {
-        const infoWithAddr = candidateInfo.map(candidate => {
-            
-            var address = "0x00000000000000000000"
-            return  {...candidate, address: address}
-        });
+    const handleSubmit = async () => {
+        const infoWithAddr = await Promise.all( candidateInfo.map(async (candidate) => {
+            const res = await axios.get('http://localhost:4000/stellar/createIssuer')
+            const address = res.data["account"]
+            console.log(address)
+            console.log(electionInfo)
+            console.log(candidate)
+            const database = await axios.post('http://localhost:4000/api/create-election/addCandidate',
+                {
+                    citizenId: candidate.nationalId,
+                    first_name: candidate.firstName,
+                    last_name: candidate.lastName,
+                    major_area_id: electionInfo.district[1][1],   // ['bangkok',['saphansung', 0]]
+                    major_area_name: electionInfo.district[1][0],
+                    party: candidate.party[0],
+                    wallet_address: address
+                }
+            )
+            console.log(candidate)
+            return { ...candidate, address: address }
+        }));
         setNewCandidateInfo(infoWithAddr)
+
         nextState()
     }
 
@@ -36,7 +53,7 @@ export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidat
                             <Button type="primary" onClick={prevState} style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px",width: "100px"}}>
                                 ย้อนกลับ
                             </Button>
-                            <Button type="primary" onClick={tmp} style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px",width: "100px"}}> 
+                            <Button type="primary" onClick={handleSubmit} style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px",width: "100px"}}> 
                                 ถัดไป
                             </Button>
                         </Space>
