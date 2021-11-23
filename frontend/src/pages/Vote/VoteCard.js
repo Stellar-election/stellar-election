@@ -6,11 +6,11 @@ import styled from "styled-components";
 const {Title} = Typography;
 
 
-export function CandidateCard(props) {
-    const first_name = props.value['value1']
-    const last_name = props.value['value2']
-    const puck = props.value['value3']
-    const index = props.value['value5']
+export function CandidateCard({value, index}) {
+    const first_name = value['first_name']
+    const last_name = value['last_name']
+    const party = value['party']
+
     return (
         <div onclick="location.href='DoneVote.html';">
             <Card style={{width: 1200}}>
@@ -18,14 +18,11 @@ export function CandidateCard(props) {
 
                 <Row>
 
-                    <Col span={4}>
-                        <br></br>
-                        {/* <Button class="button button5" type="primary" href="/donevote" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "10px",width: "150px"}}>
-                   {index}
-                </Button> */}
+                    <Col span={5}>
+                        
                         <Circle>
 
-                            <TextOnCircle level={1}>{index}</TextOnCircle>
+                            <TextOnCircle level={1}>{index+1}</TextOnCircle>
 
                         </Circle>
 
@@ -48,10 +45,10 @@ export function CandidateCard(props) {
                         </Space>
                     </Col>
 
-                    <Col span={6}>
+                    <Col span={5}>
                         <Space direction="vertical" size={6}>
                             <br/>
-                            <Title level={3}>{puck}</Title>
+                            <Title level={3}>{party}</Title>
                         </Space>
                     </Col>
 
@@ -64,8 +61,8 @@ export function CandidateCard(props) {
 }
 
 const Circle = styled.div`
-  height: 160px;
-  width: 160px;
+  height: 144px;
+  width: 144px;
   background-color: #E97D7D;
   border-radius: 50%;
   margin: auto;

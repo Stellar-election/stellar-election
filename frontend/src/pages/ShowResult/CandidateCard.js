@@ -7,7 +7,7 @@ const {Title} = Typography;
 export function CandidateCard(props) {
     const first_name = props.value['value1']
     const last_name = props.value['value2']
-    const puck = props.value['value3']
+    const party = props.value['value3']
     const score = props.value['value4']
     return (
 
@@ -28,7 +28,7 @@ export function CandidateCard(props) {
                     <Space direction="vertical" size={6}>
                         <br/>
                         <Title level={3}>{first_name} {last_name}</Title>
-                        <Title level={3}>{puck}</Title>
+                        <Title level={3}>{party}</Title>
                     </Space>
                 </Col>
 

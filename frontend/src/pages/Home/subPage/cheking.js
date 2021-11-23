@@ -1,15 +1,19 @@
 import {Button, Form, Input, Typography} from 'antd';
 import {VoteContext} from "../../../store/voteStore";
 import {useContext} from "react";
+import axios from 'axios'
 
 const {Title} = Typography;
 
-export const Checking = () => {
+export const Checking = ({setData}) => {
     const {citizen, currentState} = useContext(VoteContext)
-
     const [form] = Form.useForm();
-    const onFinish = (values) => {
+
+    const onFinish = async (values) => {
         citizen.setCitizenId(values.citizenId)
+        const area = await getArea(values.citizenId)
+        setData(area)
+        console.log(area)
 
         currentState.setCurrentState(1)
     };
@@ -17,25 +21,18 @@ export const Checking = () => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    const handleSubmit = async () => {
-        const infoWithAddr = await Promise.all( candidateInfo.map(async (candidate) => {
-            const res = await axios.get('http://localhost:4000/stellar/createIssuer')
-            const address = res.data["account"]
-            console.log(address)
-            console.log(electionInfo)
-            console.log(candidate)
-            const database = await axios.post('http://localhost:4000/api/create-election/addCandidate',
-                {
-                   
-                }
-            )
-            console.log(candidate)
-            return { ...candidate, address: address }
-        }));
-        setNewCandidateInfo(infoWithAddr)
+    
+    const getArea = async (citizenId) => {
+        const res = await axios.post(
+            'http://localhost:4000/api/create-election/all-sub-area',
+            {
+                citizenId: citizenId
+            },
+        )
+        console.log(`res getArea ---> ${JSON.stringify(res)}`)
+        return res.data
+    };
 
-        nextState()
-    }
     return (<div>
         <Title level={2} style={{textAlign: "center"}}>กรอกเลขบัตรประชาชนเพื่อเช็คสิทธิ์</Title>
         <Form

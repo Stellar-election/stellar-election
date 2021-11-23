@@ -10,7 +10,26 @@ export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidat
     const handleSubmit = async () => {
         const infoWithAddr = await Promise.all( candidateInfo.map(async (candidate) => {
             const res = await axios.get('http://localhost:4000/stellar/createIssuer')
-            const address = res.data["account"]
+            const issuer = await axios.get('http://localhost:4000/api/create-election/getIssuer')
+            const address = res.data.account
+            const secret = res.data.secret
+            console.log(issuer.data[0].account)
+
+            let trust
+            setTimeout(async () => {
+                trust = await axios.post(
+                'http://localhost:4000/stellar/trustCoin',
+                {
+                    coinName: electionInfo.district[1][0],
+                    issuer: issuer.data[0].account,
+                    secret: secret
+                      
+                    
+                },
+                console.log(secret)
+            ) 
+            },10000)
+
             console.log(address)
             console.log(electionInfo)
             console.log(candidate)

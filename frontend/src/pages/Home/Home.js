@@ -1,5 +1,5 @@
 import {Layout, Steps} from 'antd';
-import {useContext} from "react";
+import React, { useContext, useState } from "react";
 import {VoteContext} from "../../store/voteStore";
 import {Checking} from "./subPage/cheking";
 import {CreateWallet} from "./subPage/creatWallet";
@@ -8,30 +8,34 @@ import {DoneVote} from "../DoneVote/DoneVote";
 import {Vote} from "../Vote/Vote";
 
 const {Step} = Steps;
-
 const {Content} = Layout;
-
-const StepComponent = (state) => {
-    console.log("state", state.state)
-    switch (state.state) {
-        case 0:
-            return <Checking/>
-        case 1:
-            return <Area/>
-        case 2:
-            return <CreateWallet/>
-        case 3:
-            return <Vote/>
-        case 4:
-            return <DoneVote/>
-        default:
-            return <Checking/>
-    }
-}
 
 export const Home = () => {
     const {currentState} = useContext(VoteContext)
+    const [data, setData] = useState({});
 
+    const allProps = {
+        data,
+        setData
+    }
+    console.log(`data -> ${JSON.stringify(data)}`)
+    const StepComponent = (state) => {
+        console.log("state", state.state)
+        switch (state.state) {
+            case 0:
+                return <Checking {...allProps}/>
+            case 1:
+                return <Area {...allProps}/>
+            case 2:
+                return <CreateWallet {...allProps}/>
+            case 3:
+                return <Vote {...allProps}/>
+            case 4:
+                return <DoneVote {...allProps}/>
+            default:
+                return <Checking {...allProps}/>
+        }
+    }
 
     return <div>
         <Steps current={currentState.currentState}>

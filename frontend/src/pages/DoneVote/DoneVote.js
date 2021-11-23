@@ -5,20 +5,19 @@ import {VoteContext} from "../../store/voteStore";
 
 const { Title } = Typography;
 
-export function DoneVote(props) {
-    const dat = props.newCandidateInfo;
-    const { vote} = useContext(VoteContext)
+export function DoneVote({data}) {
+    const { vote } = useContext(VoteContext)
     const VoteResult = vote.voteSelect
-    const data = {'value1':'Chayanan','value2':'na east anglia','value3':'Puckard','value4':'100'}
+    const selectedCandidate = data.selectedCandidate
+    
     return (
         <div>
             <Row justify="center">
                 <Title level={2}>ท่านได้ลงคะแนนให้</Title>
             </Row>
-            {VoteResult}
             <Row justify="center">
                 <Space direction="vertical" size = "middle">       
-                   <DoneVoteCard  value={data}/>  
+                   <DoneVoteCard  selectedCandidate={selectedCandidate}/>  
                 </Space>
             </Row>
             <br/><br/><br/><br/>

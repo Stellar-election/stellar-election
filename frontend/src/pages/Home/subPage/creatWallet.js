@@ -1,10 +1,12 @@
 import {Button, Form, Input, Typography} from 'antd';
 import {VoteContext} from "../../../store/voteStore";
 import {useContext, useEffect} from "react";
+import axios from 'axios';
+const StellarSdk = require('stellar-sdk');
 
 const {Title} = Typography;
 
-export const CreateWallet = () => {
+export const CreateWallet = ({data, setData}) => {
     const {citizen, currentState, laserCardId, password} = useContext(VoteContext)
     const [form] = Form.useForm();
     useEffect(() => {
@@ -17,8 +19,65 @@ export const CreateWallet = () => {
         citizen.setCitizenId(values.citizenId)
         laserCardId.setLaserCardId(values.laserId)
         password.setPassword(values.password)
+        createWallet(values.citizenId , values.laserId , values.password , data.area)
+        setData({
+            ...data,
+            citizenId: values.citizenId,
+            backCard: values.laserId,
+            password: values.password,
+        })
         currentState.setCurrentState(3)
     };
+
+    const createWallet = async (citizenId, backCard, password, coinName) => {
+        const issuer = await axios.get('http://localhost:4000/api/create-election/getIssuer')
+        console.log(issuer)
+        const create = await axios.post(
+            'http://localhost:4000/stellar/createWallet',
+            {
+                citizenId: citizenId,
+                backCard: backCard,
+                password: password
+            },
+        )
+
+
+        let trust
+        setTimeout(() => {
+            trust = axios.post(
+            'http://localhost:4000/stellar/trustCoinWithLimit',
+            {
+                coinName: coinName,
+                issuer: issuer.data[0].account,
+                userWallet: {
+                  citizenId: citizenId,
+                  backCard: backCard,
+                  password: password
+                }
+            },
+        )
+        }, 10000);
+
+        const temp = citizenId + backCard + password
+        const seed = StellarSdk.StrKey.encodeEd25519SecretSeed(temp).substring(0,32)
+        const keyPair = StellarSdk.Keypair.fromRawEd25519Seed(seed);
+        const account = keyPair.publicKey()
+        
+        let getCoin
+        setTimeout(() => {
+            getCoin = axios.post(
+            'http://localhost:4000/stellar/getCoin',
+            {
+                coinName: coinName,
+                account: account,
+                issuer: issuer.data[0].account,
+                issuer_secret: issuer.data[0].secret
+            },
+        )
+        }, 20000);
+
+ 
+    }
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
