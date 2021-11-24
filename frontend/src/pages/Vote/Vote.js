@@ -51,12 +51,15 @@ export function Vote({ data, setData }) {
         vote.setVoteSelect(selectId)
         const selectedCandidate = candidate[selectId].wallet_address
         console.log(selectedCandidate)
-        voteCandidate(selectedCandidate)
+        // console.log(selectedCandidate)
+        setTimeout(() => {
+            console.log('voting....')
+            voteCandidate(selectedCandidate)
+        }, 10000);
         setData({ ...data, selectedCandidate: candidate[selectId] })
         currentState.setCurrentState(4)
-
     }
-
+    
     // const data = [{
     //     'id': '1',
     //     'citizenId': '1234567891025',

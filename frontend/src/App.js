@@ -14,7 +14,6 @@ export default function App() {
         <PageContainer>
             <VoteProvider>
                 <Routes>
-
                     <Route exact path="/" element={<Home/>}/>
                     <Route path="/showresult" element={<ShowResult/>}/>
                     <Route path="/dashboard" element={<CreateDashboard/>}/>

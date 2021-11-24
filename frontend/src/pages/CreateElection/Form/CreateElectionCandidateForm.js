@@ -56,7 +56,7 @@ export const CreateElectionCandidateForm = ({electionInfo, setCandidateInfo, can
 
     return (
         <>
-            <Typography>{name} พื้นที่{district[0]} เขต{district[1]}</Typography>
+            <Typography>{name} พื้นที่{district[0]} เขต{district[1][0]}</Typography>
             <Form
                 labelCol={{span: 4}}
                 wrapperCol={{span: 0}}

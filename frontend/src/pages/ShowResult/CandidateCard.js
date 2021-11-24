@@ -1,14 +1,18 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import {Avatar, Card, Col, Row, Space, Typography} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
+import axios from 'axios'
+
 
 const {Title} = Typography;
 
 export function CandidateCard(props) {
-    const first_name = props.value['value1']
-    const last_name = props.value['value2']
-    const party = props.value['value3']
-    const score = props.value['value4']
+    
+    const first_name = props.value['first_name']
+    const last_name = props.value['last_name']
+    const party = props.value['party']
+    const score = props.value['score']
+    
     return (
 
         <Card style={{width: 800}}>
