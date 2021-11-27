@@ -23,16 +23,11 @@ export function ReCheckInfo({candidateInfo, nextState, prevState, setNewCandidat
                     coinName: electionInfo.district[1][0],
                     issuer: issuer.data[0].account,
                     secret: secret
-                      
-                    
+                       
                 },
-                console.log(secret)
             ) 
             },10000)
 
-            console.log(address)
-            console.log(electionInfo)
-            console.log(candidate)
             const database = await axios.post('http://localhost:4000/api/create-election/addCandidate',
                 {
                     citizenId: candidate.nationalId,

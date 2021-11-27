@@ -57,9 +57,6 @@ export function CreateDashboard(props) {
                 </Space>
                 
             </Row>
-            <Row>
-                {/* map->all election */}
-            </Row>
 
         </div>
     )

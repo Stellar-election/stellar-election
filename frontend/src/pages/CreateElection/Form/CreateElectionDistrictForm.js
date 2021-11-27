@@ -71,20 +71,6 @@ export const CreateElectionDistrictForm = ({setElectionInfo, nextState, election
       >
         <Cascader options={districtOptions} />
       </Form.Item>
-{/* 
-      <Form.Item
-        label="ช่วงเวลาการเลือกตั้ง"
-        name="date"
-        rules={[
-          {
-            type: 'array',
-            required: true,
-            message: 'โปรดเลือกช่วงเวลาการเลือกตั้ง!',
-          },
-        ]}
-      >
-        <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-      </Form.Item> */}
 
       <Form.Item wrapperCol={{ offset: 3, span: 16 }}>
         <Button type="primary" htmlType="submit" style={{ background: "#E97D7D", borderColor: "#E97D7D", marginRight: "8px"}}> 

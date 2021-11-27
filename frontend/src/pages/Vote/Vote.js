@@ -59,26 +59,6 @@ export function Vote({ data, setData }) {
         setData({ ...data, selectedCandidate: candidate[selectId] })
         currentState.setCurrentState(4)
     }
-    
-    // const data = [{
-    //     'id': '1',
-    //     'citizenId': '1234567891025',
-    //     'first_name': 'สมชาย',
-    //     'last_name': 'เจริญชัย',
-    //     'major_area_id': '1',
-    //     'major_area_name' : 'กรุงเทพ',
-    //     'party' : 'พรรค1',
-    //     'wallet_address' : 'เอาaddresss' 
-    // }, {
-    //     'id': '2',
-    //     'citizenId': '1234567891025',
-    //     'first_name': 'สมหญิง',
-    //     'last_name': 'เจริญชัย',
-    //     'major_area_id': '1',
-    //     'major_area_name' : 'กรุงเทพ',
-    //     'party' : 'พรรค2',
-    //     'wallet_address' : 'เอาaddresss' 
-    // }]
 
     return (
         <div>
@@ -94,11 +74,9 @@ export function Vote({ data, setData }) {
                                 <CandidateCard key={index} value={candidate} index={index} />
                             </div>
 
-
                         )
                     })}
                 </Space>
-
 
             </Row>
 

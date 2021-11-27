@@ -4,13 +4,9 @@ import { Form, Input, Cascader, DatePicker } from 'antd';
 import { CandidateCard } from './CandidateCard';
 import axios from 'axios';
 
-
 const { Title } = Typography;
 
-
-
 export function ShowResult(props) {
-
 
     const [data,setData] = useState([])
     const [scores,setScores] = useState([])
@@ -27,14 +23,6 @@ export function ShowResult(props) {
         }
        
     },[values])
-    // useEffect(() => {
-        
-    // }
-
-    // //     form.setFieldsValue({
-    // //         citizenId: citizen.citizenId
-    //     });
-    // }, [citizen]);
     
     const districtOptions = [
         {
@@ -66,46 +54,23 @@ export function ShowResult(props) {
         console.log('values',values)
         const areaName = values.district[1][0]
         getResult(areaName)
-        
-        
-        // Promise.all([getResult(areaName)]).then(console.log)
+
     };
 
-    // const getResulTest =  new Promise((reslove,reject)=>{
-        
-    // })
     const getResult = async (areaName) => {
         const res = await axios.post('http://localhost:4000/api/vote/getCandidate', {
             areaName: areaName
         })
-
-        // setData(res.data)
-        // console.log('data',data)
-
-        // var new_data
-        // setTimeout(() => {
-        //     new_data = data.map(async (c) => {
-        //         console.log('c',c)
-        //         const score = await getScore(c.wallet_address)
-        //         return score.data
-        //     })
-        //     console.log('here')
-        //     console.log('new_data',new_data)
-        // }, 5000)
-        // console.log('new_data',new_data)
         
         let result = []
         if (res.data[0] != null) {
             result = res.data.map(async (value) => {
                 var score = await getScore(value.wallet_address)
                 var new_data = {...value,score:score}
-                // setValueTmp({...value,score:score})
                 return new_data
             })
-            // setData(result)
         }
 
-        // console.log('reasult',result)
         var new_result = await Promise.all(result)
         setData(new_result)
         
@@ -117,12 +82,6 @@ export function ShowResult(props) {
         })
         return score.data
     }
-
-    console.log('the real data is here',data)
-    // const tmp = data?.map((value,index) => {
-    //     console.log(data)
-    //     return <CandidateCard key={index}  value={value} />
-    // })
 
     return (
         <div>
